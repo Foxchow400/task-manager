@@ -9,7 +9,10 @@ body {
 }
 
 h2 {
+    margin: 0;
     display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
     grid-column: 1 / span 11;
     padding: 0 5px 10px;
     color: black;
@@ -24,6 +27,8 @@ p {
     grid-column: 1 / span 12;
     padding: 5px;
     background-color:rgb(55, 55, 55);
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card {
@@ -32,7 +37,7 @@ p {
     width: 90%;
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto;
-    grid-template-rows: 48px 32px;
+    grid-template-rows: 48px 40px;
     background-color: darkgray;
   }
   
