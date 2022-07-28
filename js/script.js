@@ -1,13 +1,8 @@
 var create = document.getElementById("createTask");
 var taskListElement = document.getElementById("taskList");
-var printResult
-var titleQuery;
-var descQuery;
-var descInput;
+var makeId = document.getElementById;
+var printCount;
 var taskList = [];
-var taskListLength = taskList.length;
-var count = 0;
-var arrayResult;
 
 function startTask() {
     create.innerHTML = 
@@ -23,23 +18,47 @@ function startTask() {
 startTask();
 
 function createTask() {
-    count = count + 1 
-    console.log(count);
-    titleInput = document.getElementById("titleQuery").value;
-    descInput = document.getElementById("description").value;
-    taskList.push([titleInput, descInput]);
-    console.log(taskList);
-    // taskListElement.innerHTML = taskList[0] + taskList[1];
-    formatTask();
-    // document.getElementById("titleQuery").value = "";
-    // document.getElementById("description").value = "";
+    var titleInput = document.getElementById("titleQuery").value;
+    var descInput = document.getElementById("description").value;
+    var taskListCopy = taskList;
+    if (titleInput.length > 0) {
+        taskListCopy.push([titleInput, descInput]);
+        taskList = taskListCopy;
+        updateTaskList(taskListCopy);
+        document.getElementById("titleQuery").value = "";
+        document.getElementById("description").value = "";
+        console.log(taskList);
+    };
 };
 
-function formatTask() {
-    //make a loop that prints the results from the array    
-    //updates the arrayResults variable so that it can be used to update the html correctly 
-    arrayResult = taskList[count - 1];
-    //updates the section innerHTML and uses tags so it displays correctly
-    document.getElementById("taskList").innerHTML += "<p>" + arrayResult + "</p>"
-
+function updateTaskList(taskList) {
+    //update the button ids to make them match the array
+    //display each item in the array    
+    var arrayResult = [];
+    var taskListStr = "";
+    var taskListCopy = taskList;
+    console.log(taskListCopy.length);
+    if (taskListCopy.length == 1) {
+        arrayResult = taskListCopy[0];
+        taskListStr += "<div class='card'><h2>" +  arrayResult[0] + "</h2><button id='0' onClick='deleteItem(0)'>x</button><p class='desc'>" + arrayResult[1] + "</p></div>";
+    } else {
+        for (i = 0; i < taskListCopy.length; i++) {
+            arrayResult = taskListCopy[i];
+            taskListStr += "<div class='card'><h2>" +  arrayResult[0] + "</h2><button id='0' onClick='deleteItem(" + i + ")'>x</button><p class='desc'>" + arrayResult[1] + "</p></div>";
+        };
+    };
+    taskListElement.innerHTML = taskListStr;
 }
+
+
+function deleteItem(index) {
+    //find out which button called it, then delete that button
+
+    console.log(index);
+
+    taskList.splice(index, 1);
+    updateTaskList(taskList);
+
+    console.log(taskList);
+}
+

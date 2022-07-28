@@ -3,10 +3,44 @@
 body {
     background-color: rgb(55, 55, 55);
     color: white;
-    margin: 5px;
     text-align: left;
+    margin: 0 auto;
+    padding: 0;
 }
 
-/* #taskList {
-    display: block;
-} */
+h2 {
+    display: inline-block;
+    grid-column: 1 / span 11;
+    padding: 0 5px 10px;
+    color: black;
+}
+
+button {
+    display: inline-block;
+    grid-column: 12 / span 1;
+}
+
+p {
+    grid-column: 1 / span 12;
+    padding: 5px;
+    background-color:rgb(55, 55, 55);
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 90%;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto;
+    grid-template-rows: 48px 32px;
+    background-color: darkgray;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  .desc {
+    margin: 0;
+  }
+
