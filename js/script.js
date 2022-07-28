@@ -40,16 +40,22 @@ function updateTaskList(taskList) {
     console.log(taskListCopy.length);
     if (taskListCopy.length == 1) {
         arrayResult = taskListCopy[0];
-        taskListStr += "<div class='card'><h2>" +  arrayResult[0] + "</h2><button id='0' onClick='deleteItem(0)'>x</button><p class='desc'>" + arrayResult[1] + "</p></div>";
+        taskListStr += "<div class='card'><input type='text' class='t' onkeydown='updateValue()' value='" +  arrayResult[0] + "'><button id='0' onClick='deleteItem(0)'>x</button><input type='text' class='d' value='" +  arrayResult[0] + "'></div>";
     } else {
         for (i = 0; i < taskListCopy.length; i++) {
             arrayResult = taskListCopy[i];
-            taskListStr += "<div class='card'><h2>" +  arrayResult[0] + "</h2><button id='0' onClick='deleteItem(" + i + ")'>x</button><p class='desc'>" + arrayResult[1] + "</p></div>";
+            taskListStr += "<div class='card'><input type='text' class='t' onkeydown='updateValue()' value='" +  arrayResult[0] + "'><button id='" + i + "' onClick='deleteItem(" + i + ")'>x</button><input type='text' class='d' onkeydown='updateValue()' value='" +  arrayResult[0] + "'></div>";
         };
     };
     taskListElement.innerHTML = taskListStr;
 }
 
+//function that sets the value of the current array input based on the button id
+function updateValue() {
+    if (event.key === "Enter") {
+        console.log("test");
+    }
+}
 
 function deleteItem(index) {
     //find out which button called it, then delete that button
